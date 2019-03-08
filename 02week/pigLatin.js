@@ -18,14 +18,14 @@ function pigLatin(a) {
   //take vowels and see if first letter in array includes any
   if(["a","e","i","o","u"].includes(splitWord[0])){
     //if first letter includes a vowel run the following code
-    console.log("\"" + a + "\"" + " begins with a vowel!");
-    console.log("The way to say this in Pig Latin is:");
+    return("\"" + a + "\"" + " begins with a vowel!"),
+    ("The way to say this in Pig Latin is:"),
     //log joined array into a single string and add 'ay' to the end
-    console.log("\"" + splitWord.join('') + "yay" + "\"");
+    ("\"" + splitWord.join('') + "yay" + "\"");
   } else {
     //first letter DOES NOT include a vowel run the following code
-    console.log("\"" + a + "\"" + " does NOT start with a vowel!");
-    console.log("The way to say this in Pig Latin is:");
+    console.log("\"" + a + "\"" + " does NOT start with a vowel!"),
+    ("The way to say this in Pig Latin is:");
     //begin 'for loop' to cycle through characters/array until we hit a vowel
     for (let i = 0; i < splitWord.length; i++){
 
@@ -38,7 +38,7 @@ function pigLatin(a) {
       //if we hit a vowel as we're cycling
       if (["a","e","i","o","u"].includes(splitWord[0])){
         //log joined array into a single string and add 'ay' to the end
-        console.log("\"" + splitWord.join('') + "ay" + "\"");
+        return("\"" + splitWord.join('') + "ay" + "\"");
         //then break out of the 'for loop'
         break;
       }

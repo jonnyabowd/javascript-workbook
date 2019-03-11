@@ -54,6 +54,14 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
       assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
       assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
+    });    
+    it('should disqualify none-valid RPS commands', () => {
+      assert.equal(rockPaperScissors(!'rock', ''), "Hand one must give valid throw!");
+      assert.equal(rockPaperScissors(!'paper', ''), "Hand one must give valid throw!");
+      assert.equal(rockPaperScissors(!'scissors', ''), "Hand one must give valid throw!");
+      assert.equal(rockPaperScissors('', !'rock'), "Hand two must give valid throw!");
+      assert.equal(rockPaperScissors('', !'paper'), "Hand two must give valid throw!");
+      assert.equal(rockPaperScissors('', !'scissors'), "Hand two must give valid throw!");
     });
   });
 } else {

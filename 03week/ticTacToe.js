@@ -24,35 +24,117 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+
+  // First command will check all HORIZONTAL rows to see if each space in a row contains the current playerTurn
+  if (
+    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn) ||
+    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn) ||
+    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn)
+  ) {
+
+    // Return true if one of the rows has all the players moves in it
+    return true;
+  } else {
+
+    // Return false if one of the rows has all the players moves in it
+    return false;
+  }
 }
 
 function verticalWin() {
-  // Your code here
+
+  // First command will check all VERTICAL columns to see if each space in a column contains the current playerTurn
+  if (
+    (board[0][0] == playerTurn && board[1][0] == playerTurn && board[2][0] == playerTurn) ||
+    (board[0][1] == playerTurn && board[1][1] == playerTurn && board[2][1] == playerTurn) ||
+    (board[0][2] == playerTurn && board[1][2] == playerTurn && board[2][2] == playerTurn)
+  ) {
+
+    // Return true if one of the columns has all the players moves in it
+    return true;
+  } else {
+
+    // Return false if one of the columns has all the players moves in it
+    return false;
+  }
 }
 
 function diagonalWin() {
-  // Your code here
+
+  // First command will check both DIAGONALS to see if each space contains the current playerTurn
+  if (
+    (board[0][0] == playerTurn && board[1][1] == playerTurn && board[2][2] == playerTurn) ||
+    (board[0][2] == playerTurn && board[1][1] == playerTurn && board[2][0] == playerTurn)
+  ) {
+
+    // Return true if one of the diagonals has all the players moves in it
+    return true;
+  } else {
+
+    // Return false if one of the diagonals does not have all the players moves in it
+    return false;
+  }
+
 }
 
 function checkForWin() {
-  // Your code here
+
+  // First command will check if horizontal vertical or diagonal functions returned a true
+  if (horizontalWin() || verticalWin() || diagonalWin()) {
+
+    // If they return a true show which player it was and say they won
+    console.log(playerTurn + ", you won!");
+    return true;
+  } else {
+
+    // If they return a false the board is full and no one won
+    console.log("It's a tie, no winners!");
+    return false;
+  }
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+
+  // First command will take the selected row and column in the array and set it to whichever player selected
+  board[row][column] = playerTurn;
+
+  // Second command will run the cockForWin function
+  checkForWin();
+
+  // Third command will check if the player is X
+  if (playerTurn === 'X'){
+
+    // If it is 'X' it will switch playerTurn to 'O'
+    playerTurn = 'O'
+  } else {
+
+    // If it is not 'X' it will switch playerTurn to 'X'
+    playerTurn = 'X'
+  }
 }
 
+// The game starts by running this function
 function getPrompt() {
+
+  // First command will show the current board
   printBoard();
+
+  // Second command will show which players turn it is
   console.log("It's Player " + playerTurn + "'s turn.");
+
+  // Third command will ask player which ROW they want to place in
   rl.question('row: ', (row) => {
+
+    // Fourth command will ask player which COLUMN they want to place in
     rl.question('column: ', (column) => {
+
+      // Fifth command will call the ticTacToe function and pass the players row and column placement
       ticTacToe(row, column);
+
+      // Sixth command will call this entire function again from the top
       getPrompt();
     });
   });
-
 }
 
 

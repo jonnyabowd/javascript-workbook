@@ -27,9 +27,9 @@ function horizontalWin() {
 
   // First command will check all HORIZONTAL rows to see if each space in a row contains the current playerTurn
   if (
-    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn) ||
-    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn) ||
-    (board[0][0] == playerTurn && board[0][1] == playerTurn && board[0][2] == playerTurn)
+    (board[0][0] === playerTurn && board[0][1] === playerTurn && board[0][2] === playerTurn) ||
+    (board[1][0] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn) ||
+    (board[2][0] === playerTurn && board[2][1] === playerTurn && board[2][2] === playerTurn)
   ) {
 
     // Return true if one of the rows has all the players moves in it
@@ -38,16 +38,16 @@ function horizontalWin() {
 
     // Return false if one of the rows has all the players moves in it
     return false;
-  }
+  };
 }
 
 function verticalWin() {
 
   // First command will check all VERTICAL columns to see if each space in a column contains the current playerTurn
   if (
-    (board[0][0] == playerTurn && board[1][0] == playerTurn && board[2][0] == playerTurn) ||
-    (board[0][1] == playerTurn && board[1][1] == playerTurn && board[2][1] == playerTurn) ||
-    (board[0][2] == playerTurn && board[1][2] == playerTurn && board[2][2] == playerTurn)
+    (board[0][0] === playerTurn && board[1][0] === playerTurn && board[2][0] === playerTurn) ||
+    (board[0][1] === playerTurn && board[1][1] === playerTurn && board[2][1] === playerTurn) ||
+    (board[0][2] === playerTurn && board[1][2] === playerTurn && board[2][2] === playerTurn)
   ) {
 
     // Return true if one of the columns has all the players moves in it
@@ -56,15 +56,15 @@ function verticalWin() {
 
     // Return false if one of the columns has all the players moves in it
     return false;
-  }
+  };
 }
 
 function diagonalWin() {
 
   // First command will check both DIAGONALS to see if each space contains the current playerTurn
   if (
-    (board[0][0] == playerTurn && board[1][1] == playerTurn && board[2][2] == playerTurn) ||
-    (board[0][2] == playerTurn && board[1][1] == playerTurn && board[2][0] == playerTurn)
+    (board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn) ||
+    (board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0] === playerTurn)
   ) {
 
     // Return true if one of the diagonals has all the players moves in it
@@ -79,26 +79,38 @@ function diagonalWin() {
 
 function checkForWin() {
 
-  // First command will check if horizontal vertical or diagonal functions returned a true
+  // First command will check if horizontal vertical or diagonal functions returned a true which indicates a win
   if (horizontalWin() || verticalWin() || diagonalWin()) {
-
-    // If they return a true show which player it was and say they won
+ 
+    // Announce a which player won
     console.log(playerTurn + ", you won!");
+    
+    // If they return a true show which player it was and say they won
     return true;
-  } else {
+
+  } else if (
+    
+    // If all spaces are filled and no win is detected it is a tie
+    (board[0][0] !== ' ') && (board[1][0] !== ' ') && (board[2][0] !== ' ') &&
+    (board[0][1] !== ' ') && (board[1][1] !== ' ') && (board[2][1] !== ' ') &&
+    (board[0][2] !== ' ') && (board[1][2] !== ' ') && (board[2][2] !== ' ') 
+  ){
+
+    // Announce a tie
+    console.log("It's a tie, no winners!");
 
     // If they return a false the board is full and no one won
-    console.log("It's a tie, no winners!");
     return false;
   }
 }
 
+// This function takes in the selected row/column and sets it equal to player then switches to the other players turn
 function ticTacToe(row, column) {
 
-  // First command will take the selected row and column in the array and set it to whichever player selected
+  // First command will take the selected row and column in the array and set it to whichever player selected it
   board[row][column] = playerTurn;
 
-  // Second command will run the cockForWin function
+  // Second command will run the checkForWin function
   checkForWin();
 
   // Third command will check if the player is X

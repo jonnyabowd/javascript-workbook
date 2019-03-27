@@ -242,6 +242,16 @@ CHECKERS LOGIC
 
 - Push the correct pieces and spaces to the board
   -
+
+  9 -9 11 -11 for single jump
+  18 -18 22 -22 for double jump
+
+  - create function to check for valid move
+    - should see if whichPiece matches players turn
+  - create a function to move the piece
+    - run check for valid move function
+    
+
 */
 
 
@@ -255,7 +265,6 @@ if (typeof describe === 'function') {
       assert.equal(game.board.checkers.length, 24);
     });
   });
-
   describe('Game.moveChecker()', () => {
     it('should move a checker', () => {
       assert(!game.board.grid[4][1]);

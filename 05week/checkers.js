@@ -75,13 +75,20 @@ class Board {
 
   setBoard() {
 
-    // create a variable equal to an array inside an array with all the red pieces in their starting positions
+    // create a variable equal to an array inside an array with all the RED pieces in their starting positions
     let redPositions = [
       [0, 1], [0, 3], [0, 5], [0, 7],
       [1, 0], [1, 2], [1, 4], [1, 6],
       [2, 1], [2, 3], [2, 5], [2, 7]
     ];
 
+    // use a for loop to iterate the amount of RED pieces we have
+    // each time the loop runs do the following:
+      // create a variable equal to array i position and the FIRST number in that nested array - this will tell us what ROW we're on
+      // create a variable equal to array i position and the SECOND number in that nested array - this will tell us what COLUMN we're on
+      // create a variable named RED equal to a new instance of the checker class passing in the color constructor as a string
+      // grab the checkers constructor (array) in the Board class and push the RED variable
+      // grab the grid constructor (array) at the specific row and column location and set it equal to the RED variable
     for (let i =0; i < 12; i++) {
       let redRow = redPositions[i][0];
       let redColumn = redPositions[i][1];
@@ -90,13 +97,20 @@ class Board {
       this.grid[redRow][redColumn] = red;
     };
 
-    // create a variable equal to an array inside an array with all the black pieces in their starting positions
+    // create a variable equal to an array inside an array with all the BLACK pieces in their starting positions
     let blackPositions = [
       [5, 0], [5, 2], [5, 4], [5, 6],
       [6, 1], [6, 3], [6, 5], [6, 7],
       [7, 0], [7, 2], [7, 4], [7, 6]
     ];
 
+    // use a for loop to iterate the amount of BLACK pieces we have
+    // each time the loop runs do the following:
+      // create a variable equal to array i position and the FIRST number in that nested array - this will tell us what ROW we're on
+      // create a variable equal to array i position and the SECOND number in that nested array - this will tell us what COLUMN we're on
+      // create a variable named BLACK equal to a new instance of the checker class passing in the color constructor as a string
+      // grab the checkers constructor (array) in the Board class and push the BLACK variable
+      // grab the grid constructor (array) at the specific row and column location and set it equal to the BLACK variable
     for (let i =0; i < 12; i++) {
       let blackRow = blackPositions[i][0];
       let blackColumn = blackPositions[i][1];
@@ -105,7 +119,7 @@ class Board {
       this.grid[blackRow][blackColumn] = black;
     };
 
-    // create a variable equal to an array inside an array with all the places on the board users cannot play
+    // create a variable equal to an array inside an array with all the places on the board users CANNOT PLAY INTO
     let noPlaySpaces = [
       [0, 0], [0, 2], [0, 4], [0, 6],
       [1, 1], [1, 3], [1, 5], [1, 7],
@@ -117,6 +131,13 @@ class Board {
       [7, 1], [7, 3], [7, 5], [7, 7],
     ];
 
+    // use a for loop to iterate the amount of SPACES WE CANNOT PLAY that we have
+    // each time the loop runs do the following:
+      // create a variable equal to array i position and the FIRST number in that nested array - this will tell us what ROW we're on
+      // create a variable equal to array i position and the SECOND number in that nested array - this will tell us what COLUMN we're on
+      // create a variable named NO PLAY equal to a new instance of the checker class passing in the color constructor as a string
+      // grab the checkers constructor (array) in the Board class and push the NO PLAY variable
+      // grab the grid constructor (array) at the specific row and column location and set it equal to the NO PLAY variable
     for (let i =0; i < 32; i++) {
       let noPlayRow = noPlaySpaces[i][0];
       let noPlayColumn = noPlaySpaces[i][1];
@@ -163,7 +184,7 @@ class Board {
     console.log(string);
   }
 
-  // // ATTEMPT TO MANUALLY SET BOARD PIECES
+  // // FAILED ATTEMPT TO MANUALLY SET BOARD PIECES
   // setBoard() {
 
   //   this.grid[0,0] = [null,'R',null,'R',null,'R',null,'R'];

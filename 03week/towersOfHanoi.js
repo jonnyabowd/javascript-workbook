@@ -19,24 +19,39 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
-
+function movePiece(startStack, endStack) {
+  // Take the last number in the starting stack .pop and add it to the end of the ending stack .push
+  stacks[endStack].push(stacks[startStack].pop())
 }
 
-function isLegal() {
-  // Your code here
+function isLegal(startStack,endStack) {
+  // Grab the position of the last numbers in both stacks and assign them to variables
+  let startPos = stacks[startStack].length-1;
+  let endPos = stacks[endStack].length-1;
 
+  // If the number in the starting position is greater than the number in the ending position it is illegal and return true otherwise the move is legal
+  if ((stacks[startStack][startPos] < stacks[endStack][endPos]) || (stacks[endStack][endPos] === undefined)) {
+    return true;
+  } else {
+    return false;
+  };
 }
 
 function checkForWin() {
-  // Your code here
-
+  // Check the last stack to see if all 4 numbers are in it. If so announce winner
+  if (stacks.c.length === 4){
+    console.log("WINNER WINNER CHICKEN DINNER!!!")
+  };
 }
 
-function towersOfHanoi(startStack, endStack) {
-  // Your code here
-
+function towersOfHanoi(startStack,endStack) {
+  // If a move is legal, run the movePiece function and checkForWin, otherwise the move is illegal so do not move and prompt to try again
+  if (isLegal(startStack,endStack)) {
+    movePiece(startStack,endStack);
+    checkForWin()
+  } else {
+    console.log("This move is ILLEGAL! Try again.")
+  };
 }
 
 function getPrompt() {
